@@ -1,12 +1,11 @@
-Red [author: "Gregg Irwin"]
+Red [authors: ["Gregg Irwin" "Nenad Rakocevic"]
 
-c-to-f: func [t][t * (9.0 / 5.0) + 32.0]
-f-to-c: func [t][t - 32.0 * (5.0 / 9.0)]
-t-change: function [in-face out-face fn][
-	out-face/text: either number? t: load in-face/text [form round/to fn t .01][""]
-]
 view [
-	; Use key-up because on-change doesn't detect event cycles
-	tc: field on-key-up [t-change tc tf :c-to-f] text "Celsius ="   
-	tf: field on-key-up [t-change tf tc :f-to-c] text "Farenheight"
+	title "TempConv"
+	tc: field text "Celsius ="   
+	tf: field text "Farenheight"
+	do [
+		react/later [if number? c: tc/data [tf/data: round/to (c * (9.0 / 5.0) + 32.0) .01]]
+		react/later [if number? f: tf/data [tc/data: round/to (f - 32.0 * (5.0 / 9.0)) .01]]
+	]
 ]
