@@ -1,4 +1,4 @@
-Red [authors: ["Gregg Irwin" "Nenad Rakocevic"]
+Red [authors: ["Gregg Irwin" "Nenad Rakocevic"]]
 
 view [
 	title "TempConv"
